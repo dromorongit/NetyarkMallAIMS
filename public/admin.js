@@ -285,8 +285,39 @@ async function deleteUser(id) {
 function loadProfile() {
   const user = JSON.parse(localStorage.getItem('user'));
   document.getElementById('profile-info').innerHTML = `
-    <p><strong>Name:</strong> ${user.name}</p>
-    <p><strong>Email:</strong> ${user.email}</p>
-    <p><strong>Role:</strong> ${user.role}</p>
+    <div class="profile-card">
+      <div class="profile-avatar">
+        <div class="avatar-circle">${user.name.charAt(0).toUpperCase()}</div>
+      </div>
+      <div class="profile-details">
+        <h3>${user.name}</h3>
+        <p class="profile-email">${user.email}</p>
+        <span class="profile-role role-${user.role}">${user.role}</span>
+        <p class="profile-joined">Member since ${new Date().getFullYear()}</p>
+      </div>
+    </div>
   `;
 }
+
+document.getElementById('delete-account-btn').addEventListener('click', async () => {
+  if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+    const user = JSON.parse(localStorage.getItem('user'));
+    try {
+      const res = await fetch(`${API_BASE}/auth/users/${user.id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        alert('Account deleted successfully.');
+        localStorage.clear();
+        window.location.href = 'admin-login.html';
+      } else {
+        const data = await res.json();
+        alert(data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error deleting account.');
+    }
+  }
+});

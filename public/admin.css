@@ -354,18 +354,114 @@ textarea {
 }
 
 #profile-info {
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 10px;
+  margin-bottom: 30px;
 }
 
-#profile-info p {
-  margin: 10px 0;
+.profile-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,249,250,0.95) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.profile-avatar {
+  flex-shrink: 0;
+}
+
+.avatar-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+  font-weight: 700;
+  box-shadow: 0 8px 25px rgba(40,167,69,0.3);
+}
+
+.profile-details {
+  flex-grow: 1;
+}
+
+.profile-details h3 {
+  margin: 0 0 10px 0;
+  color: #2d3748;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.profile-email {
+  color: #4a5568;
   font-size: 1.1em;
+  margin: 5px 0;
 }
 
-#profile-info strong {
-  color: #28a745;
+.profile-role {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.role-superadmin {
+  background: linear-gradient(45deg, #dc3545, #c82333);
+  color: white;
+}
+
+.role-staff {
+  background: linear-gradient(45deg, #fd7e14, #e8680f);
+  color: white;
+}
+
+.role-customer {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+}
+
+.profile-joined {
+  color: #718096;
+  font-size: 0.95em;
+  margin-top: 15px;
+}
+
+.profile-actions {
+  text-align: center;
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(220,53,69,0.3);
+}
+
+.delete-btn:hover {
+  background: linear-gradient(135deg, #c82333 0%, #a02622 100%) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(220,53,69,0.4);
 }
 
 /* Responsive Design */
@@ -462,6 +558,22 @@ textarea {
 
   .product-item, .order-item, .message-item, .user-item {
     padding: 15px;
+  }
+
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .avatar-circle {
+    width: 80px;
+    height: 80px;
+    font-size: 2.5em;
+  }
+
+  .profile-details h3 {
+    font-size: 1.5em;
   }
 }
 
