@@ -11,7 +11,8 @@ app.use(cors({
   origin: [
     'http://localhost:3000',  // Local development
     'https://www.netyarkmall.com',  // Production frontend domain
-    'https://netyarkmall.com'  // Alternative domain
+    'https://netyarkmall.com',  // Alternative domain
+    'https://dromorongit.github.io'  // GitHub Pages frontend
   ],
   credentials: true
 }));
