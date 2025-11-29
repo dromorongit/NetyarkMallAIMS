@@ -36,8 +36,11 @@
         <h3>Add New Product *</h3>
         <form id="product-form">
           <input type="text" id="product-name" placeholder="Name *" required>
-          <input type="text" id="product-description" placeholder="Description">
-          <input type="number" id="product-price" placeholder="Price *" required>
+          <input type="text" id="product-short-description" placeholder="Short Description *" required>
+          <textarea id="product-long-description" placeholder="Long Description"></textarea>
+          <input type="text" id="product-brand" placeholder="Brand">
+          <input type="text" id="product-colors" placeholder="Colors (comma-separated)">
+          <input type="number" id="product-price" placeholder="Price (GHS) *" required>
           <input type="number" id="product-stock" placeholder="Stock *" required>
           <select id="product-category" required>
             <option value="">Select Category *</option>

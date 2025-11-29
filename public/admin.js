@@ -30,7 +30,11 @@ document.getElementById('product-form').addEventListener('submit', async (e) => 
    e.preventDefault();
    const formData = new FormData();
    formData.append('name', document.getElementById('product-name').value);
-   formData.append('description', document.getElementById('product-description').value);
+   formData.append('shortDescription', document.getElementById('product-short-description').value);
+   formData.append('longDescription', document.getElementById('product-long-description').value);
+   formData.append('brand', document.getElementById('product-brand').value);
+   const colors = document.getElementById('product-colors').value.split(',').map(c => c.trim()).filter(c => c);
+   colors.forEach(color => formData.append('colors', color));
    formData.append('price', parseFloat(document.getElementById('product-price').value));
    formData.append('stock', parseInt(document.getElementById('product-stock').value));
    formData.append('category', document.getElementById('product-category').value);
@@ -106,11 +110,14 @@ async function loadProducts() {
     list.innerHTML = products.map(p => `
       <div class="product-item">
         <h3>${p.name}</h3>
-        <p>${p.description}</p>
-        <p>Price: $${p.price}</p>
-        <p>Stock: ${p.stock}</p>
-        <p>Category: ${p.category}</p>
-        <p>Wholesale: ${p.isWholesale ? 'Yes (MOQ: ' + p.minOrderQty + ')' : 'No'}</p>
+        <p><strong>Short Desc:</strong> ${p.shortDescription}</p>
+        ${p.longDescription ? `<p><strong>Long Desc:</strong> ${p.longDescription}</p>` : ''}
+        ${p.brand ? `<p><strong>Brand:</strong> ${p.brand}</p>` : ''}
+        ${p.colors && p.colors.length ? `<p><strong>Colors:</strong> ${p.colors.join(', ')}</p>` : ''}
+        <p><strong>Price:</strong> GHS ${p.price}</p>
+        <p><strong>Stock:</strong> ${p.stock}</p>
+        <p><strong>Category:</strong> ${p.category}</p>
+        <p><strong>Wholesale:</strong> ${p.isWholesale ? 'Yes (MOQ: ' + p.minOrderQty + ')' : 'No'}</p>
         <button onclick="updateStock('${p._id}', ${p.stock})">Update Stock</button>
         <button onclick="deleteProduct('${p._id}')">Delete</button>
       </div>
