@@ -37,7 +37,16 @@
         <input type="text" id="product-description" placeholder="Description">
         <input type="number" id="product-price" placeholder="Price" required>
         <input type="number" id="product-stock" placeholder="Stock" required>
-        <input type="text" id="product-category" placeholder="Category" required>
+        <select id="product-category" required>
+          <option value="">Select Category</option>
+          <option value="Kitchen Appliances">Kitchen Appliances</option>
+          <option value="Beauty & Personal Care">Beauty & Personal Care</option>
+          <option value="Photography & Content Creation Tools">Photography & Content Creation Tools</option>
+          <option value="Nail Supplies">Nail Supplies</option>
+          <option value="Kids & Babies">Kids & Babies</option>
+          <option value="Home Essentials">Home Essentials</option>
+          <option value="Lighting & Home Decor">Lighting & Home Decor</option>
+        </select>
         <input type="text" id="product-image" placeholder="Image URL">
         <label><input type="checkbox" id="product-wholesale"> Wholesale Product</label>
         <input type="number" id="product-moq" placeholder="Min Order Qty" value="1" min="1">
