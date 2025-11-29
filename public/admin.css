@@ -1,84 +1,325 @@
+/* Netyark Mall AIMS Admin Panel Styles */
+/* Brand Colors: Green (#28a745), White (#ffffff), Orange (#fd7e14) */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: #333;
+  line-height: 1.6;
+}
+
+#dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #f4f4f4;
 }
 
-#login-container {
-  max-width: 400px;
-  margin: 100px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+h1 {
+  text-align: center;
+  color: #28a745;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-#login-form input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-button {
-  background: #007bff;
+#logout-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #dc3545;
   color: white;
   border: none;
-  padding: 10px;
-  border-radius: 4px;
+  padding: 10px 20px;
+  border-radius: 25px;
   cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  background: #0056b3;
+#logout-btn:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .tabs {
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 .tab-btn {
-  padding: 10px 20px;
-  margin-right: 10px;
-  background: #ddd;
-  border: none;
+  background: #ffffff;
+  color: #28a745;
+  border: 2px solid #28a745;
+  padding: 12px 24px;
+  margin: 0 5px 10px;
+  border-radius: 25px;
   cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  font-size: 1em;
+}
+
+.tab-btn:hover {
+  background: #28a745;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(40,167,69,0.3);
 }
 
 .tab-btn.active {
-  background: #007bff;
+  background: #28a745;
   color: white;
+  box-shadow: 0 4px 8px rgba(40,167,69,0.3);
 }
 
 .tab-content {
   background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  border: 1px solid #e9ecef;
+}
+
+h2 {
+  color: #28a745;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  border-bottom: 3px solid #fd7e14;
+  padding-bottom: 10px;
 }
 
 form {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  border-left: 5px solid #fd7e14;
+}
+
+form input, form select, form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+  outline: none;
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40,167,69,0.1);
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #495057;
+}
+
+.checkbox-label {
+  display: inline-block !important;
+  margin-top: 10px !important;
+}
+
+button[type="submit"], button {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover, button:hover {
+  background: linear-gradient(45deg, #218838, #17a2b8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(40,167,69,0.3);
+}
+
+#create-staff-section {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 10px;
+  padding: 20px;
   margin-bottom: 20px;
 }
 
-form input {
-  display: block;
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+#create-staff-section h3 {
+  color: #856404;
+  margin-top: 0;
 }
 
-#products-list, #orders-list, #messages-list {
+#products-list, #orders-list, #messages-list, #users-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
   margin-top: 20px;
 }
 
-.product-item, .order-item, .message-item {
-  border: 1px solid #ddd;
-  padding: 10px;
+.product-item, .order-item, .message-item, .user-item {
+  background: white;
+  border: 1px solid #e9ecef;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.product-item:hover, .order-item:hover, .message-item:hover, .user-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.product-item h3, .order-item h3, .message-item h3, .user-item h3 {
+  color: #28a745;
+  margin-top: 0;
+  font-size: 1.2em;
+}
+
+.product-item p, .order-item p, .message-item p, .user-item p {
+  margin: 8px 0;
+  color: #6c757d;
+}
+
+.product-item button, .order-item button, .message-item button, .user-item button {
+  background: #fd7e14;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.product-item button:hover, .order-item button:hover, .message-item button:hover, .user-item button:hover {
+  background: #e8680f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(253,126,20,0.3);
+}
+
+select {
+  padding: 8px;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  background: white;
+  font-size: 1em;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+#profile-info {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#profile-info p {
   margin: 10px 0;
-  border-radius: 4px;
+  font-size: 1.1em;
+}
+
+#profile-info strong {
+  color: #28a745;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #dashboard {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+  
+  .tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .tab-btn {
+    width: 200px;
+    margin: 5px 0;
+  }
+  
+  #products-list, #orders-list, #messages-list, #users-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .tab-content {
+    padding: 20px;
+  }
+}
+
+/* Login/Register Pages */
+#login-container, #register-container {
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  border-top: 5px solid #28a745;
+}
+
+#login-container h2, #register-container h2 {
+  text-align: center;
+  color: #28a745;
+  margin-bottom: 30px;
+}
+
+#login-form input, #register-form input {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}
+
+#login-form input:focus, #register-form input:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40,167,69,0.1);
+}
+
+#login-form button, #register-form button {
+  width: 100%;
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+#login-form button:hover, #register-form button:hover {
+  background: linear-gradient(45deg, #218838, #17a2b8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(40,167,69,0.3);
 }
