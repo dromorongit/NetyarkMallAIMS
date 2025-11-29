@@ -43,6 +43,9 @@ document.getElementById('product-form').addEventListener('submit', async (e) => 
    formData.append('image', document.getElementById('product-image').files[0]);
    formData.append('isWholesale', document.getElementById('product-wholesale').checked);
    formData.append('minOrderQty', parseInt(document.getElementById('product-moq').value) || 1);
+   formData.append('isNewArrival', document.getElementById('product-new-arrival').checked);
+   formData.append('isFastSelling', document.getElementById('product-fast-selling').checked);
+   formData.append('isShopByCategory', document.getElementById('product-shop-category').checked);
    try {
      const res = await fetch(`${API_BASE}/products`, {
        method: 'POST',
@@ -121,6 +124,11 @@ async function loadProducts() {
         <p><strong>Stock:</strong> ${p.stock}</p>
         <p><strong>Category:</strong> ${p.category}</p>
         <p><strong>Wholesale:</strong> ${p.isWholesale ? 'Yes (MOQ: ' + p.minOrderQty + ')' : 'No'}</p>
+        <p><strong>Sections:</strong> ${[
+          p.isNewArrival ? 'New Arrivals' : '',
+          p.isFastSelling ? 'Fast-Selling Items' : '',
+          p.isShopByCategory ? 'Shop by Category' : ''
+        ].filter(s => s).join(', ') || 'None'}</p>
         <button onclick="updateStock('${p._id}', ${p.stock})">Update Stock</button>
         <button onclick="deleteProduct('${p._id}')">Delete</button>
       </div>

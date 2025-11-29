@@ -27,6 +27,36 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get new arrivals (public)
+router.get('/new-arrivals', async (req, res) => {
+  try {
+    const products = await Product.find({ isNewArrival: true });
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Get fast-selling items (public)
+router.get('/fast-selling', async (req, res) => {
+  try {
+    const products = await Product.find({ isFastSelling: true });
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Get shop by category items (public)
+router.get('/shop-by-category', async (req, res) => {
+  try {
+    const products = await Product.find({ isShopByCategory: true });
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Get wholesale products (public)
 router.get('/wholesale', async (req, res) => {
   try {

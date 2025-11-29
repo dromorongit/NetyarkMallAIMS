@@ -13,6 +13,9 @@ const productSchema = new mongoose.Schema({
   image: { type: String }, // URL or path
   isWholesale: { type: Boolean, default: false },
   minOrderQty: { type: Number, default: 1 },
+  isNewArrival: { type: Boolean, default: false },
+  isFastSelling: { type: Boolean, default: false },
+  isShopByCategory: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now }
 });
 
