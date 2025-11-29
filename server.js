@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
+const User = require('./models/User');
 
 const app = express();
 
@@ -31,7 +33,18 @@ app.use('/api/orders', orderRoutes);
 const messageRoutes = require('./routes/messages');
 app.use('/api/messages', messageRoutes);
 
-app.get('/', (req, res) => res.send('NetyarkMall AIMS API'));
+app.get('/', async (req, res) => {
+  try {
+    const superadmin = await User.findOne({ role: 'superadmin' });
+    if (superadmin) {
+      res.sendFile(path.join(__dirname, 'public', 'admin-login.html'));
+    } else {
+      res.sendFile(path.join(__dirname, 'public', 'admin-register.html'));
+    }
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
