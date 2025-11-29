@@ -6,6 +6,7 @@ const productSchema = new mongoose.Schema({
   longDescription: { type: String },
   brand: { type: String },
   colors: { type: [String] }, // array of colors
+  sizes: { type: [String] }, // array of sizes
   price: { type: Number, required: true }, // in GHS
   stock: { type: Number, required: true, default: 0 },
   category: { type: String, required: true },

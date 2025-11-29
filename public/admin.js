@@ -35,6 +35,8 @@ document.getElementById('product-form').addEventListener('submit', async (e) => 
    formData.append('brand', document.getElementById('product-brand').value);
    const colors = document.getElementById('product-colors').value.split(',').map(c => c.trim()).filter(c => c);
    colors.forEach(color => formData.append('colors', color));
+   const sizes = document.getElementById('product-sizes').value.split(',').map(s => s.trim()).filter(s => s);
+   sizes.forEach(size => formData.append('sizes', size));
    formData.append('price', parseFloat(document.getElementById('product-price').value));
    formData.append('stock', parseInt(document.getElementById('product-stock').value));
    formData.append('category', document.getElementById('product-category').value);
@@ -114,6 +116,7 @@ async function loadProducts() {
         ${p.longDescription ? `<p><strong>Long Desc:</strong> ${p.longDescription}</p>` : ''}
         ${p.brand ? `<p><strong>Brand:</strong> ${p.brand}</p>` : ''}
         ${p.colors && p.colors.length ? `<p><strong>Colors:</strong> ${p.colors.join(', ')}</p>` : ''}
+        ${p.sizes && p.sizes.length ? `<p><strong>Sizes:</strong> ${p.sizes.join(', ')}</p>` : ''}
         <p><strong>Price:</strong> GHS ${p.price}</p>
         <p><strong>Stock:</strong> ${p.stock}</p>
         <p><strong>Category:</strong> ${p.category}</p>
