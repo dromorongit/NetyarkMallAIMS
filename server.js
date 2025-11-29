@@ -14,7 +14,7 @@ app.use(cors({
     'https://netyarkmall.com',  // Alternative domain
     'https://dromorongit.github.io'  // GitHub Pages frontend
   ],
-  credentials: true
+  credentials: false
 }));
 app.use(express.json());
 app.use(express.static('public'));
