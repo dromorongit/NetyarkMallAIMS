@@ -87,10 +87,14 @@ async function loadDashboard() {
   const user = JSON.parse(localStorage.getItem('user'));
   if (user && user.role === 'superadmin') {
     document.getElementById('create-staff-section').style.display = 'block';
+    document.querySelector('[data-tab="users"]').style.display = 'inline-block';
+  } else {
+    document.querySelector('[data-tab="users"]').style.display = 'none';
   }
   loadProducts();
   loadOrders();
   loadMessages();
+  loadUsers();
   loadProfile();
 }
 
@@ -226,6 +230,39 @@ async function respondToMessage(id) {
     loadMessages();
   } catch (err) {
     console.error(err);
+  }
+}
+
+async function loadUsers() {
+  try {
+    const res = await fetch(`${API_BASE}/auth/users`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const users = await res.json();
+    const list = document.getElementById('users-list');
+    list.innerHTML = users.map(u => `
+      <div class="user-item">
+        <h3>${u.name} (${u.role})</h3>
+        <p>${u.email}</p>
+        <button onclick="deleteUser('${u._id}')">Delete</button>
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function deleteUser(id) {
+  if (confirm('Delete this user?')) {
+    try {
+      await fetch(`${API_BASE}/auth/users/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      loadUsers();
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 

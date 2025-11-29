@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const { auth } = require('../middleware/auth');
+const { auth, superAdminAuth } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -65,6 +65,29 @@ router.get('/check-superadmin', async (req, res) => {
 // Get profile
 router.get('/profile', auth, (req, res) => {
   res.json(req.user);
+// Get all users (superadmin only)
+router.get('/users', auth, superAdminAuth, async (req, res) => {
+  try {
+    const users = await User.find().select('-password');
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Delete user (superadmin only)
+router.delete('/users/:id', auth, superAdminAuth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    await User.findByIdAndDelete(req.params.id);
+    res.json({ message: 'User deleted' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+module.exports = router;
 });
 
 module.exports = router;
