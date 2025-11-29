@@ -41,6 +41,12 @@ document.getElementById('product-form').addEventListener('submit', async (e) => 
    formData.append('stock', parseInt(document.getElementById('product-stock').value));
    formData.append('category', document.getElementById('product-category').value);
    formData.append('image', document.getElementById('product-image').files[0]);
+   const additionalImages = document.getElementById('product-additional-images').files;
+   for (let i = 0; i < additionalImages.length; i++) {
+     formData.append('additionalImages', additionalImages[i]);
+   }
+   const videos = document.getElementById('product-videos').value.split('\n').map(v => v.trim()).filter(v => v);
+   videos.forEach(video => formData.append('videos', video));
    formData.append('isWholesale', document.getElementById('product-wholesale').checked);
    formData.append('minOrderQty', parseInt(document.getElementById('product-moq').value) || 1);
    formData.append('isNewArrival', document.getElementById('product-new-arrival').checked);

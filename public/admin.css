@@ -221,6 +221,37 @@ form label {
   margin-top: 20px;
 }
 
+.additional-media {
+  background: rgba(248,249,250,0.8);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  border: 1px solid rgba(222,226,230,0.5);
+}
+
+.additional-media h4 {
+  margin-top: 0;
+  color: #28a745;
+  font-size: 1.1em;
+}
+
+.additional-media label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.additional-media textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid rgba(222,226,230,0.8);
+  border-radius: 8px;
+  font-size: 1em;
+  resize: vertical;
+  min-height: 80px;
+}
+
 button[type="submit"], button {
   background: linear-gradient(135deg, #28a745 0%, #20c997 50%, #17a2b8 100%);
   color: white;
