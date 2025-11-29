@@ -27,35 +27,33 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 });
 
 document.getElementById('product-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const product = {
-    name: document.getElementById('product-name').value,
-    description: document.getElementById('product-description').value,
-    price: parseFloat(document.getElementById('product-price').value),
-    stock: parseInt(document.getElementById('product-stock').value),
-    category: document.getElementById('product-category').value,
-    image: document.getElementById('product-image').value,
-    isWholesale: document.getElementById('product-wholesale').checked,
-    minOrderQty: parseInt(document.getElementById('product-moq').value) || 1
-  };
-  try {
-    const res = await fetch(`${API_BASE}/products`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify(product)
-    });
-    if (res.ok) {
-      loadProducts();
-      document.getElementById('product-form').reset();
-      document.getElementById('product-moq').value = '1';
-    }
-  } catch (err) {
-    console.error(err);
-  }
-});
+   e.preventDefault();
+   const formData = new FormData();
+   formData.append('name', document.getElementById('product-name').value);
+   formData.append('description', document.getElementById('product-description').value);
+   formData.append('price', parseFloat(document.getElementById('product-price').value));
+   formData.append('stock', parseInt(document.getElementById('product-stock').value));
+   formData.append('category', document.getElementById('product-category').value);
+   formData.append('image', document.getElementById('product-image').files[0]);
+   formData.append('isWholesale', document.getElementById('product-wholesale').checked);
+   formData.append('minOrderQty', parseInt(document.getElementById('product-moq').value) || 1);
+   try {
+     const res = await fetch(`${API_BASE}/products`, {
+       method: 'POST',
+       headers: {
+         'Authorization': `Bearer ${token}`
+       },
+       body: formData
+     });
+     if (res.ok) {
+       loadProducts();
+       document.getElementById('product-form').reset();
+       document.getElementById('product-moq').value = '1';
+     }
+   } catch (err) {
+     console.error(err);
+   }
+ });
 
 document.getElementById('create-staff-form').addEventListener('submit', async (e) => {
   e.preventDefault();

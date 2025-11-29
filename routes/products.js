@@ -1,6 +1,19 @@
 const express = require('express');
 const Product = require('../models/Product');
 const { auth, adminAuth } = require('../middleware/auth');
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'backend/uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage: storage });
 
 const router = express.Router();
 
@@ -36,8 +49,12 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create product (admin only)
-router.post('/', auth, adminAuth, async (req, res) => {
-  const product = new Product(req.body);
+router.post('/', auth, adminAuth, upload.single('image'), async (req, res) => {
+  const productData = req.body;
+  if (req.file) {
+    productData.image = '/uploads/' + req.file.filename;
+  }
+  const product = new Product(productData);
   try {
     await product.save();
     res.status(201).json(product);
