@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetyarkMall AIMS - Super Admin Registration</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div id="register-container">
+    <h2>Super Admin Registration</h2>
+    <p id="register-message">Creating the owner account for Netyark Mall.</p>
+    <form id="register-form">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Create Super Admin Account</button>
+    </form>
+    <p id="register-error"></p>
+    <p>Already have an account? <a href="admin-login.html">Login</a></p>
+  </div>
+
+  <script>
+    const API_BASE = '/api';
+
+    // Check if super admin already exists
+    async function checkSuperAdmin() {
+      try {
+        const res = await fetch(`${API_BASE}/auth/check-superadmin`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.exists) {
+            document.getElementById('register-message').textContent = 'Super Admin account already exists. Contact the owner.';
+            document.getElementById('register-form').style.display = 'none';
+          }
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    checkSuperAdmin();
+
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      try {
+        const res = await fetch(`${API_BASE}/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password, role: 'superadmin' })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          alert('Super Admin account created successfully. Please login.');
+          window.location.href = 'admin-login.html';
+        } else {
+          document.getElementById('register-error').textContent = data.message;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

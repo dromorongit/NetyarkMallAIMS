@@ -1,28 +1,21 @@
 {
-  "name": "netyark-mall-aims",
+  "name": "netyarkmall-aims",
   "version": "1.0.0",
-  "description": "Netyark Mall Admin & Inventory Management System",
-  "main": "backend/server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build": "cd frontend && npm run build && cd ..",
-    "start": "npm run build && node backend/server.js",
-    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
-    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
-    "setup": "npm run install:all && npm run build"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
-  },
-  "engines": {
-    "node": ">=16.0.0"
-  },
-  "keywords": [
-    "ecommerce",
-    "admin",
-    "inventory",
-    "management",
-    "dashboard"
-  ],
-  "author": "Netyark Mall",
-  "license": "MIT"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.0.0"
+  }
 }

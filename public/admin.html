@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetyarkMall AIMS - Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div id="dashboard">
+    <h1>NetyarkMall Admin & Inventory Management System</h1>
+    <button id="logout-btn">Logout</button>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="products">Products</button>
+      <button class="tab-btn" data-tab="orders">Orders</button>
+      <button class="tab-btn" data-tab="messages">Messages</button>
+      <button class="tab-btn" data-tab="profile">Profile</button>
+    </div>
+
+    <div id="products-tab" class="tab-content">
+      <h2>Manage Products</h2>
+      <div id="create-staff-section" style="display: none; margin-bottom: 20px; padding: 10px; border: 1px solid #ddd;">
+        <h3>Create Staff Account</h3>
+        <form id="create-staff-form">
+          <input type="text" id="staff-name" placeholder="Name" required>
+          <input type="email" id="staff-email" placeholder="Email" required>
+          <input type="password" id="staff-password" placeholder="Password" required>
+          <button type="submit">Create Staff</button>
+        </form>
+      </div>
+      <form id="product-form">
+        <input type="text" id="product-name" placeholder="Name" required>
+        <input type="text" id="product-description" placeholder="Description">
+        <input type="number" id="product-price" placeholder="Price" required>
+        <input type="number" id="product-stock" placeholder="Stock" required>
+        <input type="text" id="product-category" placeholder="Category" required>
+        <input type="text" id="product-image" placeholder="Image URL">
+        <label><input type="checkbox" id="product-wholesale"> Wholesale Product</label>
+        <input type="number" id="product-moq" placeholder="Min Order Qty" value="1" min="1">
+        <button type="submit">Add Product</button>
+      </form>
+      <div id="products-list"></div>
+    </div>
+
+    <div id="orders-tab" class="tab-content" style="display: none;">
+      <h2>Manage Orders</h2>
+      <div id="orders-list"></div>
+    </div>
+
+    <div id="messages-tab" class="tab-content" style="display: none;">
+      <h2>Live Chat Messages</h2>
+      <div id="messages-list"></div>
+    </div>
+
+    <div id="profile-tab" class="tab-content" style="display: none;">
+      <h2>Profile</h2>
+      <div id="profile-info"></div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
