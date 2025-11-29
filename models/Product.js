@@ -11,8 +11,7 @@ const productSchema = new mongoose.Schema({
   stock: { type: Number, required: true, default: 0 },
   category: { type: String, required: true },
   image: { type: String }, // URL or path
-  additionalImages: { type: [String] }, // array of additional image paths
-  videos: { type: [String] }, // array of video URLs
+  additionalMedia: { type: [String] }, // array of additional media paths (images/videos)
   isWholesale: { type: Boolean, default: false },
   minOrderQty: { type: Number, default: 1 },
   isNewArrival: { type: Boolean, default: false },

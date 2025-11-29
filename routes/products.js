@@ -81,14 +81,14 @@ router.get('/:id', async (req, res) => {
 // Create product (admin only)
 router.post('/', auth, adminAuth, upload.fields([
   { name: 'image', maxCount: 1 },
-  { name: 'additionalImages', maxCount: 10 }
+  { name: 'additionalMedia', maxCount: 10 }
 ]), async (req, res) => {
   const productData = req.body;
   if (req.files.image && req.files.image[0]) {
     productData.image = '/uploads/' + req.files.image[0].filename;
   }
-  if (req.files.additionalImages) {
-    productData.additionalImages = req.files.additionalImages.map(file => '/uploads/' + file.filename);
+  if (req.files.additionalMedia) {
+    productData.additionalMedia = req.files.additionalMedia.map(file => '/uploads/' + file.filename);
   }
   const product = new Product(productData);
   try {
