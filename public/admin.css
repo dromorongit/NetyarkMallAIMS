@@ -315,6 +315,15 @@ textarea {
   border-radius: 15px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.1);
   border-top: 5px solid #28a745;
+  text-align: center;
+}
+
+#logo-top {
+  height: 80px;
+  width: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 #login-container h2, #register-container h2 {
